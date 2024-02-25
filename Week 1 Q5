@@ -1,0 +1,50 @@
+#include<stdio.h>
+void mul(int n,int(*a)[n], int (*b)[n], int (*c)[n]) {
+    int i,j,k;
+    for (int i=0;i<n;i++) {
+        for (int j=0; j<n;j++) {
+            c[i][j] = 0;
+            for (int k=0;k<n;k++) {
+                c[i][j]+=a[i][k]*b[k][j];
+            }
+        }
+    }
+    printf("Resultant matrix is\n");
+    for(i=0;i<n;i++)
+    {
+    for(j=0;j<n;j++)
+    printf("%d ",c[i][j]);
+    printf("\n");
+    }
+}
+int main()
+{
+    int n;
+    printf("Enter dimension of matrix: ");
+    scanf("%d",&n);
+    int a[n][n],b[n][n],c[n][n];
+    int i,j;
+    printf("Enter first matrix\n");
+    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    scanf("%d",&a[i][j]);
+    printf("Enter second matrix\n");
+    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    scanf("%d",&b[i][j]);
+    printf("First matrix \n");
+    for(i=0;i<n;i++)
+    {
+    for(j=0;j<n;j++)
+    printf("%d ",a[i][j]);
+    printf("\n");
+    }  
+    printf("Second matrix \n");
+    for(i=0;i<n;i++)
+    {
+    for(j=0;j<n;j++)
+    printf("%d ",b[i][j]);
+    printf("\n");
+    } 
+    mul(n,a,b,c);
+}
