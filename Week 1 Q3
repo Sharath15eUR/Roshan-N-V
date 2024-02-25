@@ -1,0 +1,18 @@
+#include <stdio.h>
+void swap(int a,int b)
+{
+    int t;
+    t=a;
+    a=b;
+    b=t;
+    printf("Number 1= %d\n",a);
+    printf("Number 2= %d",b);
+}
+int main()
+{
+    int a,b;
+    printf("Enter the numbers: ");
+    scanf("%d %d",&a,&b);
+    void (*fp)(int,int)=&swap;
+    (*fp)(a,b);
+}
