@@ -1,0 +1,33 @@
+struct Queue {
+    int front, rear, size;
+    int array[MAX_SIZE];
+};
+int isEmpty(struct Queue* queue) {
+    return (queue->size == 0);
+}
+
+// Function to check if the queue is full
+int isFull(struct Queue* queue) {
+    return (queue->size == MAX_SIZE);
+}
+
+void enqueue(struct Queue* queue, int item) {
+    if (isFull(queue)) {
+        printf("Queue is full\n");
+        return;
+    }
+    queue->rear = (queue->rear + 1) % MAX_SIZE;
+    queue->array[queue->rear] = item;
+    queue->size += 1;
+}
+
+int dequeue(struct Queue* queue) {
+    if (isEmpty(queue)) {
+        printf("Queue is empty\n");
+        return -1;
+    }
+    int item = queue->array[queue->front];
+    queue->front = (queue->front + 1) % MAX_SIZE;
+    queue->size -= 1;
+    return item;
+}
