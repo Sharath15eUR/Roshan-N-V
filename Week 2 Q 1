@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void removeDuplicates(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL && current->next != NULL) {
+        if (current->data == current->next->data) {
+            struct Node* temp = current->next;
+            current->next = current->next->next;
+            free(temp);
+        } else {
+            current = current->next;
+        }
+    }
+}
+
+void display(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+int main() {
+    struct Node* sortedList = NULL;
+    int data_values[] = {2,3,3,4};
+    int num_elements = sizeof(data_values) / sizeof(data_values[0]);
+    for (int i = num_elements - 1; i >= 0; i--) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = data_values[i];
+        newNode->next = sortedList;
+        sortedList = newNode;
+    }
+    printf("Original Sorted Linked List: ");
+    display(sortedList);
+    removeDuplicates(sortedList);
+    printf("Linked List after removing duplicates: ");
+    display(sortedList);
+    while (sortedList != NULL) {
+        struct Node* temp = sortedList;
+        sortedList = sortedList->next;
+        free(temp);
+    }
+
+    return 0;
+}
