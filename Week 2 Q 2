@@ -1,0 +1,20 @@
+void rotateByN(struct Node** head, int N) {
+    if (*head == NULL || N <= 0) {
+        return;
+    }
+    struct Node* current = *head;
+    while (N-- > 0 && current->next != NULL) {
+        current = current->next;
+    }
+    if (current->next == NULL) {
+        return; 
+    struct Node* newHead = current->next;
+    newHead->prev = NULL;
+    current->next = NULL;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = *head;
+    (*head)->prev = current;
+    *head = newHead;
+}
