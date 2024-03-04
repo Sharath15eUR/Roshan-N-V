@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX_SIZE 100
+struct Queue {
+    int front, rear, size;
+    char* array[MAX_SIZE];
+};
+void initialize(struct Queue* queue) {
+    queue->front = queue->rear = -1;
+    queue->size = 0;
+}
+int isEmpty(struct Queue* queue) {
+    return (queue->size == 0);
+}
+int isFull(struct Queue* queue) {
+    return (queue->size == MAX_SIZE);
+}
+void enqueue(struct Queue* queue, const char* line) {
+    if (isFull(queue)) {
+        printf("Queue is full\n");
+        return;
+    }
+    char* newLine = strdup(line);
+    if (isEmpty(queue)) 
+        queue->front = queue->rear = 0;
+     else {
+        queue->rear = (queue->rear + 1) % MAX_SIZE;
+    }
+    queue->array[queue->rear] = newLine;
+    queue->size += 1;
+}
+char* dequeue(struct Queue* queue) {
+    if (isEmpty(queue)) {
+        printf("Queue is empty\n");
+        return NULL;
+    }
+    char* frontLine = queue->array[queue->front];
+    if (queue->front == queue->rear) {
+        queue->front = queue->rear = -1;
+    } else {
+        queue->front = (queue->front + 1) % MAX_SIZE;
+    }
+    queue->size -= 1;
+    return frontLine;
+}
+int countLines(struct Queue* queue) {
+    return queue->size;
+}
+void freeQueue(struct Queue* queue) {
+    while (!isEmpty(queue)) {
+        char* line = dequeue(queue);
+        free(line);
+    }
+}
+
+int main() {
+    struct Queue lineQueue;
+    initialize(&lineQueue);
+    enqueue(&lineQueue, "Line 1");
+    enqueue(&lineQueue, "Line 2");
+    enqueue(&lineQueue, "Line 3");
+    printf("Number of lines in the queue: %d\n", countLines(&lineQueue));
+    char* deletedLine = dequeue(&lineQueue);
+    if (deletedLine != NULL) {
+        printf("Deleted line: %s\n", deletedLine);
+        free(deletedLine);
+    }
+    freeQueue(&lineQueue);
+    return 0;
+}
