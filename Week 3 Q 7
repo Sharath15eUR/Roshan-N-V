@@ -1,0 +1,11 @@
+fork:
+Purpose: Create a new process (child) that is a copy of the calling process (parent).
+Behavior: Both parent and child continue executing from the point of the fork call.
+Return Values: In parent, returns child's process ID (pid); in child, returns 0.
+
+
+exec:
+
+Purpose: Replace the current process image with a new program.
+Behavior: The current process's code, data, and stack are replaced by the new program.
+Return Values: Does not return if successful; returns -1 on failure.
