@@ -1,0 +1,15 @@
+
+Process:
+
+Independent program in execution.
+Has its own memory space and resources.
+Processes are isolated from each other.
+Creating a process involves more overhead.
+
+
+Thread:
+
+Unit of execution within a process.
+Shares memory space and resources with other threads in the same process.
+Threads within the same process are not isolated.
+Creating a thread involves less overhead.
