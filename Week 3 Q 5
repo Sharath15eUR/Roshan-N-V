@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void *printMessage(void *message) {
+    printf("%s\n", (char *)message);
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t thread1, thread2;
+
+    pthread_create(&thread1, NULL, printMessage, "Hello");
+    pthread_join(thread1, NULL);
+
+    pthread_create(&thread2, NULL, printMessage, "World");
+    pthread_join(thread2, NULL);
+
+    return 0;
+}
