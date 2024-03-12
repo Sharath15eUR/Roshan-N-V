@@ -1,0 +1,19 @@
+Strategies to Avoid Race Conditions:
+
+1. Use Mutexes (Locks)
+2. Atomic Operations
+3. Lock-Free Data Structures
+4. Thread Synchronization
+5. Immutable Data
+6. Thread-Local Storages
+
+
+Strategies to Avoid Deadlocks:
+
+1. Lock Ordering
+2. Lock Timeout
+3. Lock Hierarchy
+4. Avoid Nested Locks
+5. Use Lock-Free Algorithms
+6. Detect and Handle Deadlocks
+7. Design for Simplicity
